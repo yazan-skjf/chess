@@ -5,4 +5,5 @@ class Board {
         int row;
         int col;
     public:
+        Board();
 };
