@@ -2,8 +2,10 @@
 
 class Board {
     private:
-        int row;
-        int col;
+        int numRows;
+        int numCols;
     public:
         Board();
+        Board(int numRows, int numCols);
+        void Display();
 };
