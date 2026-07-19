@@ -1,4 +1,4 @@
-#include "Loader.hpp"
+#include "loader.hpp"
 #include <fstream>
 
 using json = nlohmann::json;

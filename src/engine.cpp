@@ -2,7 +2,7 @@
 #include "board.hpp"
 #include "move.hpp"
 #include "piece.hpp"
-#include "Loader.hpp"
+#include "loader.hpp"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
