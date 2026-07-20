@@ -1,7 +1,11 @@
+#pragma once
+
 #include <iostream>
 
 class Piece {
-    public:
+    private:
         int rowPos;
         int colPos;
+    public:
+        Piece();
 };
