@@ -1,9 +1,8 @@
 #include <iostream>
 #include "board.hpp"
+#include "loader.hpp"
 
 Board::Board() {
-    numRows = 8;
-    numCols = 8;
     std::cout << "Board setup complete." << std::endl;
 }
 

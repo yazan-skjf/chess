@@ -9,6 +9,9 @@ class Board {
         int numRows;
         int numCols;
         std::vector<std::vector<Piece>> squares;
+        std::vector<Piece> allPieces;
+
+        static void loadPreset(Board& board);
     public:
         Board();
         void Display();
