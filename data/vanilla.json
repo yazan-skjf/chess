@@ -1,0 +1,44 @@
+{
+    "pieces": {
+        "king": {
+            "id": 0,
+            "iconW": "♔",
+            "iconB": "♚"},
+        "queen": {
+            "id": 1,
+            "iconW": "♕",
+            "iconB": "♛"},
+        "rook": {
+            "id": 2,
+            "iconW": "♖",
+            "iconB": "♜"},
+        "bishop": {
+            "id": 3,
+            "iconW": "♗",
+            "iconB": "♝"},
+        "knight": {
+            "id": 4,
+            "iconW": "♘",
+            "iconB": "♞"},
+        "pawn": {
+            "id": 5,
+            "iconW": "♙",
+            "iconB": "♟"}
+    },
+    
+    "presets": {
+        "standard": {
+            "numRows": 8,
+            "numCols": 8,
+            "data": [
+            ["black.rook", "black.knight", "black.bishop", "black.queen", "black.king", "black.bishop", "black.knight", "black.rook"],
+            ["black.pawn","black.pawn","black.pawn","black.pawn","black.pawn","black.pawn","black.pawn","black.pawn"],
+            ["","","","","","","",""],
+            ["","","","","","","",""],
+            ["","","","","","","",""],
+            ["","","","","","","",""],
+            ["white.pawn","white.pawn","white.pawn","white.pawn","white.pawn","white.pawn","white.pawn","white.pawn"],
+            ["white.rook", "white.knight", "white.bishop", "white.queen", "white.king", "white.bishop", "white.knight", "white.rook"]]
+        }
+    }
+}
