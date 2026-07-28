@@ -4,8 +4,8 @@
 
 class Piece {
     private:
-        int rowPos;
-        int colPos;
+        int rowPos_;
+        int colPos_;
     public:
         Piece();
 };

@@ -2,19 +2,21 @@
 
 #include <fstream>
 #include <iostream>
+#include <string>
+
 #include "boardState.hpp"
 #include "board.hpp"
 #include <nlohmann/json.hpp>
 
 class Loader {
     private:
-        std::vector<BoardState> data;
+        std::vector<BoardState> data_;
 
         static BoardState parseBoardStateJson(const nlohmann::json& data);
 
         //file decoders
         static nlohmann::json decodeJson(const std::string& path);
-        // static json decodeXML(const std::string& path);
+
     public:
         Loader(const std::string& path);
         Board createBoard(const std::string& presetName);

@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+
 #include "piece.hpp"
 
 using std::vector;
@@ -18,26 +20,26 @@ class PieceConfig {
 
 class BoardState {
     private:
-        int numRows;
-        int numCols;
-        vector<vector<string>> squares;
-        vector<vector<PieceConfig>> allPieces;
+        int numRows_;
+        int numCols_;
+        vector<vector<string>> squares_;
+        vector<vector<PieceConfig>> allPieces_;
     public:
         BoardState() :
-            numRows(0),
-            numCols(0),
-            squares(),
-            allPieces()
+            numRows_(0),
+            numCols_(0),
+            squares_(),
+            allPieces_()
         {}
         BoardState(int numRows, int numCols, vector<vector<string>> squares) :
-            numRows(numRows),
-            numCols(numCols),
-            squares(squares)
+            numRows_(numRows),
+            numCols_(numCols),
+            squares_(squares)
         {}
-        int getRows() { return numRows; }
-        int getCols() { return numCols; }
-        void setRows(int n) { numRows = n; }
-        void setCols(int n) { numCols = n; }
-        vector<vector<string>>& getSquares() { return squares; }
-        void setSquares(vector<vector<string>>& s) { squares = s; }
+        int getRows() { return numRows_; }
+        int getCols() { return numCols_; }
+        void setRows(int n) { numRows_ = n; }
+        void setCols(int n) { numCols_ = n; }
+        vector<vector<string>>& getSquares() { return squares_; }
+        void setSquares(vector<vector<string>>& squares) { squares_ = squares; }
 };

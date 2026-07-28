@@ -14,7 +14,7 @@ Loader::Loader(const std::string& path) {
 
         std::cout << "Attempting file: " << file.string() << std::endl;
         if (file.extension() == ".json") {
-            data.push_back(Loader::parseBoardStateJson(Loader::decodeJson(file.string())));
+            data_.push_back(Loader::parseBoardStateJson(Loader::decodeJson(file.string())));
         } else {
             std::cout << "Unsupported file extension: " << file.string() << std::endl;
         }
@@ -28,7 +28,7 @@ Loader::Loader(const std::string& path) {
 Board Loader::createBoard(const std::string& presetName) {
     Board board;
 
-    for (const auto& state: data) {
+    for (const auto& state: data_) {
         //iterate through each state and fuse them into one board
         
     }
@@ -41,7 +41,8 @@ json Loader::decodeJson(const std::string& path) {
 
     json data;
     file >> data;
-
+    
+    std::cout << "Successfully decoded: " << path << std::endl;
     return data;
 }
 
@@ -49,12 +50,16 @@ BoardState Loader::parseBoardStateJson(const json& data) { // parse one file int
 
     BoardState state;
 
+    std::unordered_map<std::string, BoardState> presets;
+    std::unordered_map<std::string, PieceConfig> pieces;
+
     if (data.contains("presets")) { //parse presets
         int numRows = data["presets"]["numRows"];
         int numCols = data["presets"]["numCols"];
         std::vector<std::vector<std::string>> squares;
 
         for (const auto& row: data["presets"]["data"]) {
+            std::cout << row << std::endl;
             squares.push_back(row);
         }
 

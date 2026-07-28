@@ -8,9 +8,9 @@ Board::Board() {
 
 void Board::Display() {
     bool isBlackSquare = false;
-    for (int r = numRows-1; r >= 0; r--) {
+    for (int r = numRows_-1; r >= 0; r--) {
         std::cout << "|  ";
-        for (int c = 0; c < numCols; c++) {
+        for (int c = 0; c < numCols_; c++) {
             std::cout << (isBlackSquare ? "□" : "■") << "  ";
             isBlackSquare = !isBlackSquare;
         }
