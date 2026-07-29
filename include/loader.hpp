@@ -13,7 +13,7 @@ class Loader {
     private:
         std::string path_;
 
-        GameData parseGameDataJson(const std::string& path) const;
+        void parseGameDataJson(const std::string& path, GameData& gameData) const;
 
         //file decoders
         nlohmann::json decodeJson(const std::string& path) const;

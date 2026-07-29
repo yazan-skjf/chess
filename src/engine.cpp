@@ -17,6 +17,8 @@ int main() {
     std::cout << "Loading files..." << std::endl;
     GameData gameData = loader.loadGameData();
 
+    std::cout << "Displaying game data:\n" << gameData << std::endl;
+
     // std::cout << "Creating game instance..." << std::endl;
     // GameInstance instance;
     // std::cout << "Success" << std::endl;
