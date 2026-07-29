@@ -7,8 +7,8 @@ Engine is written in C++ and exposed through a backend API for a TypeScript weba
 
     C++ Engine:
         - ✅ Foundation and structure
-        - ❌ Decoding and parsing of data (In progress)
-        - ❌ Logic and functionality
+        - ✅ Decoding and parsing of data
+        - ❌ Logic and functionality (In progress)
         - ❌ Community modding interface
     
     TypeScript Webapp: TBA
