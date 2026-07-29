@@ -6,23 +6,28 @@
 
 #include "boardState.hpp"
 #include "board.hpp"
+#include "gameData.hpp"
 #include <nlohmann/json.hpp>
 
 class Loader {
     private:
-        std::vector<BoardState> data_;
+        std::string path_;
 
-        static BoardState parseBoardStateJson(const nlohmann::json& data);
+        GameData parseGameDataJson(const std::string& path) const;
 
         //file decoders
-        static nlohmann::json decodeJson(const std::string& path);
+        nlohmann::json decodeJson(const std::string& path) const;
 
     public:
-        Loader(const std::string& path);
+        Loader() :
+            path_("data")
+        {}
+        void setPath(const std::string& path) { path_ = path; };
+        const std::string& getPath() const { return path_; };
+
         Board createBoard(const std::string& presetName);
 
-        std::vector<std::vector<std::string>> loadPresets();
-        std::vector<std::vector<std::string>> loadPieces();
+        GameData loadGameData();
 
         //helpers
         static std::string getFileExtension(const std::string& path) { return std::filesystem::path(path).extension().string(); }
