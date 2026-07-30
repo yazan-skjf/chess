@@ -2,19 +2,28 @@
 #include "board.hpp"
 #include "loader.hpp"
 
-Board::Board() {
-    std::cout << "Board setup complete." << std::endl;
-}
+Board::Board() {}
+
+Board::Board(int numRows, int numCols, const std::vector<std::vector<Piece>> squares) :
+    numRows_(numRows),
+    numCols_(numCols),
+    squares_(std::move(squares))
+{}
 
 void Board::Display() {
-    bool isBlackSquare = false;
     for (int r = numRows_-1; r >= 0; r--) {
         std::cout << "|  ";
         for (int c = 0; c < numCols_; c++) {
-            std::cout << (isBlackSquare ? "□" : "■") << "  ";
-            isBlackSquare = !isBlackSquare;
+            if (isEmptySquare(c, r)) {
+                if (isWhiteSquare(c, r)) {
+                    std::cout << "■  ";
+                } else {
+                    std::cout << "□  ";
+                }
+            } else {
+                std::cout << getPieceAt(c, r).getIcon() << "  ";
+            }
         }
         std::cout << "|" << std::endl;
-        isBlackSquare = !isBlackSquare;
     };
 }

@@ -1,5 +1,7 @@
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
+
 #include "loader.hpp"
 #include "boardState.hpp"
 #include "piece.hpp"
@@ -24,8 +26,27 @@ GameData Loader::loadGameData() {
     return gameData;
 }
 
-Board Loader::createBoard(const std::string& presetName) {
-    
+Board Loader::createBoard(GameData& gameData, const std::string& presetName) {
+    const PresetData& preset = gameData.getPreset(presetName);
+
+    std::vector<std::vector<Piece>> squares(preset.getNumRows());
+    int y = 0;
+    for (const auto& row: preset.getLayout()) {
+        int x = 0;
+        for (const auto& squareName: row) { //squareName = "black.rook"
+            if (squareName.empty()) {
+                squares.at(y).push_back(Piece());
+                continue;
+            }
+            auto [color, pieceName] = splitPieceName(squareName);
+            const PieceData& piece = gameData.getPiece(pieceName);
+            squares.at(y).push_back(Piece(pieceName, x, y, color, piece.getIcon(color)));
+            x++;
+        }
+        y++;
+    }
+
+    return Board(preset.getNumRows(), preset.getNumCols(), squares);
 }
 
 json Loader::decodeJson(const std::string& path) const {
@@ -48,13 +69,18 @@ void Loader::parseGameDataJson(const std::string& path, GameData& gameData) cons
             for (const auto& row: presetData["data"]) {
                 layout.push_back(row);
             }
+            std::reverse(layout.begin(), layout.end());
             gameData.addPreset(presetName, PresetData(presetName, presetData["numRows"], presetData["numCols"], std::move(layout)));
         }
     }
 
     if (data.contains("pieces")) { //parse pieces
         for (auto& [pieceName, pieceData] : data["pieces"].items()) {
-            gameData.addPiece(pieceName, PieceData(pieceName, pieceData["id"]));
+            std::unordered_map<std::string, std::string> icons;
+            for (auto& [colorName, colorIcon] : pieceData["colors"].items()) {
+                icons.insert_or_assign(std::move(colorName), std::move(colorIcon));
+            }
+            gameData.addPiece(pieceName, PieceData(pieceName, pieceData["id"], icons));
         }
     }
 }
