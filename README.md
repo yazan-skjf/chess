@@ -14,4 +14,5 @@ Engine is written in C++ and exposed through a backend API for a TypeScript weba
     TypeScript Webapp: TBA
 
 ## Architecture
+![Chess Engine Diagram](docs/diagram.svg)
 ![Chess Engine Architecture](docs/architecture.svg)
