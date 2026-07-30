@@ -11,12 +11,18 @@ class PieceData {
     private:
         std::string name_;
         int id_;
+        std::unordered_map<std::string, std::string> icons_;
 
     public:
-        PieceData(std::string name, int id) :
+        PieceData(std::string name, int id, std::unordered_map<std::string, std::string> icons) :
             name_(std::move(name)),
-            id_(id)
+            id_(id),
+            icons_(std::move(icons))
         {}
+
+        const std::string& getName() const { return name_; };
+        int getId() const { return id_; };
+        const std::string& getIcon(const std::string& color) const { return icons_.at(color); };
 };
 
 class PresetData {
@@ -33,6 +39,11 @@ class PresetData {
             numCols_(numCols),
             layout_(std::move(layout))
         {}
+
+        const std::string& getName() const { return name_; };
+        int getNumRows() const { return numRows_; };
+        int getNumCols() const { return numCols_; };
+        const std::vector<std::vector<std::string>>& getLayout() const { return layout_; };
 };
 
 class GameData {
@@ -69,5 +80,16 @@ class GameData {
         }
         void addPiece(std::string name, PieceData piece) {
             pieces_.insert_or_assign(std::move(name), std::move(piece));
+        }
+
+        const PresetData& getPreset(const std::string& presetName) { return presets_.at(presetName); };
+        const PieceData& getPiece(const std::string& pieceName) { return pieces_.at(pieceName); };
+
+
+        void printPresets() {
+            for (const auto& [name, preset] : presets_)
+            {
+                std::cout << "Preset: " << name << '\n';
+            }
         }
 };

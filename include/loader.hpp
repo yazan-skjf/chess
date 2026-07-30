@@ -25,7 +25,7 @@ class Loader {
         void setPath(const std::string& path) { path_ = path; };
         const std::string& getPath() const { return path_; };
 
-        Board createBoard(const std::string& presetName);
+        static Board createBoard(GameData& gameData, const std::string& presetName);
 
         GameData loadGameData();
 
@@ -37,5 +37,12 @@ class Loader {
                 files.push_back(entry.path());
             }
             return files;
+        }
+        static std::pair<std::string, std::string> splitPieceName(const std::string& name) {
+            size_t dot = name.find('.');
+            if (dot == std::string::npos) {
+                throw std::runtime_error("Invalid format: " + name);
+            }
+            return { name.substr(0, dot), name.substr(dot + 1)};
         }
 };
