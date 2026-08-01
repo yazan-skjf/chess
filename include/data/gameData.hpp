@@ -5,8 +5,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "boardState.hpp"
-
 class PieceData {
     private:
         std::string name_;

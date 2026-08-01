@@ -11,7 +11,12 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
 
 add_executable(chess ${SOURCES})
 
-target_include_directories(chess PRIVATE include include_third_party)
+target_include_directories(chess PRIVATE
+    include
+    include/engine
+    include/data
+    include/third_party
+)
 
 add_custom_command(TARGET chess POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory

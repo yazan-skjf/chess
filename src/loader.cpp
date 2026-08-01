@@ -3,7 +3,6 @@
 #include <algorithm>
 
 #include "loader.hpp"
-#include "boardState.hpp"
 #include "piece.hpp"
 
 using json = nlohmann::json;
