@@ -40,7 +40,7 @@ Board Loader::createBoard(GameData& gameData, const std::string& presetName) {
             }
             auto [color, pieceName] = splitPieceName(squareName);
             const PieceData& piece = gameData.getPiece(pieceName);
-            squares.at(y).push_back(Piece(pieceName, x, y, color, piece.getIcon(color)));
+            squares.at(y).push_back(Piece(pieceName, Position{x, y}, color, piece.getIcon(color)));
             x++;
         }
         y++;

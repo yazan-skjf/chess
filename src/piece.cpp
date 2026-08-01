@@ -1,12 +1,12 @@
 #include <iostream>
 
 #include "piece.hpp"
+#include "position.hpp"
 
 Piece::Piece() = default;
-Piece::Piece(std::string name, int xPos, int yPos, std::string color, std::string icon) :
+Piece::Piece(std::string name, Position position, std::string color, std::string icon) :
     name_(name),
-    xPos_(xPos),
-    yPos_(yPos),
+    position_(position),
     color_(color),
     icon_(icon)
 {};

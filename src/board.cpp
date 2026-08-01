@@ -1,6 +1,8 @@
 #include <iostream>
+
 #include "board.hpp"
 #include "loader.hpp"
+#include "position.hpp"
 
 Board::Board() {}
 
@@ -14,14 +16,15 @@ void Board::Display() {
     for (int r = numRows_-1; r >= 0; r--) {
         std::cout << "|  ";
         for (int c = 0; c < numCols_; c++) {
-            if (isEmptySquare(c, r)) {
-                if (isWhiteSquare(c, r)) {
+            Position position{c, r};
+            if (isEmptySquare(position)) {
+                if (Position::isWhiteSquare(position)) {
                     std::cout << "■  ";
                 } else {
                     std::cout << "□  ";
                 }
             } else {
-                std::cout << getPieceAt(c, r).getIcon() << "  ";
+                std::cout << getPieceAt(position).getIcon() << "  ";
             }
         }
         std::cout << "|" << std::endl;
